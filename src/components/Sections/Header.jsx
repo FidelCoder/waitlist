@@ -49,10 +49,9 @@ export default function Header() {
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
         <div>
-          <h1 className="extraBold font60">We are Digital Agency.</h1>
+          <h1 className="extraBold font60">We are WorldSACCO, a visionary financial platform.</h1>
           <HeaderP className="font13 semiBold">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+          Unlock the future of finance with WorldSACCO. Join our exclusive waitlist and experience intelligent recommendations, seamless money management, and instant loans. Sign up now and take control of your financial future.
           </HeaderP>
           <BtnWrapper>
             <FieldWrapper>
@@ -82,9 +81,9 @@ export default function Header() {
             </QuotesWrapper>
             <div>
               <p className="font15 whiteColor">
-                <em>Friends, such as we desire, are dreams and fables. Friendship demands the ability to do without it.</em>
+                <em>Empower Your Financial Future with WorldSACCO: The Future of Finance Begins Here.</em>
               </p>
-              <p className="font13 orangeColor textRight" style={{marginTop: '10px'}}>Ralph Waldo Emerson</p>
+              <p className="font13 orangeColor textRight" style={{marginTop: '10px'}}>WorldSACCO Team</p>
             </div>
           </QuoteWrapper>
           <DotsWrapper>
