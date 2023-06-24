@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import styled from "styled-components";
-import FullButton from "../Buttons/FullButton";
 import Countdown from './Countdown';
 import HeaderImage from "../../assets/img/saco.jpg";
 import QuotesIcon from "../../assets/svg/Quotes";
@@ -10,40 +9,11 @@ import Dots from "../../assets/svg/Dots";
 axios.defaults.baseURL = 'http://localhost:5000';
 
 export default function Header() {
-  const [email, setEmail] = useState('');
   const [notification, setNotification] = useState(null);
 
-  // const subscribeEmail = async () => {
-  //   try {
-  //     const response = await axios.post('/subscribe', { email: email });
-  //     if (response.status === 200) {
-  //       setNotification('Thank you for subscribing!');
-  //       setEmail('');
-  //     } else {
-  //       setNotification('Something went wrong, please try again.');
-  //     }
-  //   } catch (error) {
-  //     setNotification('An error occurred, please try again later.');
-  //   }
-  // };
-
-  const subscribeEmail = async () => {
-    try {
-      console.log("clicked me")
-      const response = await axios.post('/subscribe', { email: email });
-      console.log(response);  // <--- Add this line
-      if (response.status === 200) {
-        setNotification('Thank you for subscribing!');
-        setEmail('');
-      } else {
-        setNotification('Something went wrong, please try again.');
-      }
-    } catch (error) {
-      console.log(error);  // <--- Add this line
-      setNotification(`An error occurred: ${error.message}`);
-    }
+  const subscribeEmail = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSdwyxmsWHHMtTPpl7iSIEjh4ej2Q7ws616JsELRnciYIq_5xA/viewform?usp=sf_link', "_blank");
   };
-  
 
   return (
     <Wrapper id="home" className="container flexSpaceCenter">
@@ -54,22 +24,10 @@ export default function Header() {
           Unlock the future of finance with WorldSACCO. Join our exclusive waitlist and experience intelligent recommendations, seamless money management, and instant loans. Sign up now and take control of your financial future.
           </HeaderP>
           <BtnWrapper>
-            <FieldWrapper>
-              <EmailInput
-                type="email"
-                placeholder="Enter your email..."
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              {/* <FullButton title="Join Waitlist" onClick={subscribeEmail} /> */}
-              <FullButton title="Join Waitlist" action={subscribeEmail} />
-
-            </FieldWrapper>
+            <BigFullButton onClick={subscribeEmail} />
           </BtnWrapper>
           {notification && <p>{notification}</p>}
-          <CountdownWrapper>
-            <Countdown targetDate="2024-01-01" />
-          </CountdownWrapper>
+          
         </div>
       </LeftSide>
       <RightSide>
@@ -96,6 +54,24 @@ export default function Header() {
   );
 }
 
+const BigFullButton = ({ onClick }) => (
+  <button 
+    onClick={onClick}
+    style={{
+      fontSize: '2em',
+      padding: '20px',
+      borderRadius: '10px',
+      backgroundColor: '#007BFF',
+      color: 'white',
+      transition: 'all 0.2s ease-in-out',
+    }}
+    onMouseOver={({target}) => target.style.backgroundColor = '#0056b3'}
+    onMouseOut={({target}) => target.style.backgroundColor = '#007BFF'}
+  >
+    Join Waitlist
+  </button>
+);
+
 const Wrapper = styled.section`
   padding-top: 20px;
   width: 100%;
@@ -104,7 +80,6 @@ const Wrapper = styled.section`
     flex-direction: column;
   }
 `;
-
 
 const LeftSide = styled.div`
   width: 50%;
@@ -130,7 +105,7 @@ const RightSide = styled.div`
   }
 `;
 
-const HeaderP = styled.div`
+const HeaderP = styled.p`
   max-width: 470px;
   padding: 15px 0 50px 0;
   line-height: 1.5rem;
@@ -149,18 +124,6 @@ const BtnWrapper = styled.div`
     width: 100%;
     flex-direction: column;
   }
-`;
-
-const FieldWrapper = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const EmailInput = styled.input`
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 `;
 
 const GreyDiv = styled.div`
@@ -197,13 +160,12 @@ const Img = styled.img`
   }
 `;
 
-
 const QuoteWrapper = styled.div`
   position: absolute;
-  left: 10px;  // Closer to the left edge
-  bottom: 10px;  // Closer to the bottom edge
-  max-width: 280px;  // Smaller width
-  padding: 20px;  // Smaller padding, will make the box smaller
+  left: 10px; 
+  bottom: 10px; 
+  max-width: 280px; 
+  padding: 20px;
   z-index: 99;
   @media (max-width: 960px) {
     left: 20px;
@@ -212,7 +174,6 @@ const QuoteWrapper = styled.div`
     bottom: -50px;
   }
 `;
-
 
 const QuotesWrapper = styled.div`
   position: absolute;
@@ -232,7 +193,6 @@ const DotsWrapper = styled.div`
     display: none;
   }
 `;
-
 
 const CountdownWrapper = styled.div`
   display: flex;
